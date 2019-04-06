@@ -1,113 +1,99 @@
 var wins = 0;
 var losses = 0;
 var currentSessionTalliedValue = 0;
+var yourScore = document.getElementById('yourScore');
+var blue = Math.floor(Math.random() * (1 - 9) + 9);
+var emerald = Math.floor(Math.random() * (1 - 9) + 9);
+var sapphire = Math.floor(Math.random() * (1 - 9) + 9);
+var gold = Math.floor(Math.random() * (1 - 9) + 9);
 
-var randomTargetScore = [0, 1, 2, 3];
+var randomTargetScore = Math.floor(Math.random() * (1 - 9) + 9);
+console.log("randomTargetScore" + randomTargetScore);
 
-for (i = 0; i < 4; i++) { randomTargetScore[i] = Math.floor(Math.random() * 12) }
+//for (i = 0; i < 4; i++) {
 
-console.log("gold value: " + randomTargetScore[0]);
-console.log("blue value: " + randomTargetScore[1]);
-console.log("emerald value: " + randomTargetScore[2]);
-console.log("sapphire value: " + randomTargetScore[3]);
+//console.log("randomTargetScore" + randomTargetScore);
 
-var currentGameTargetScore = Math.floor(Math.random() * (120 - 19) + 19);
+
+//}
+
+console.log("gold value: " + gold);
+console.log("blue value: " + blue);
+console.log("emerald value: " + emerald);
+console.log("sapphire value: " + sapphire);
+
+var currentGameTargetScore = Math.floor(Math.random() * (30 - 19) + 19);
 console.log("currentGameTargetScore: " + currentGameTargetScore);
 
+$("#targetScore").append(currentGameTargetScore)
+
+
+
 $("#gold").click(function () {
-    currentSessionTalliedValue += randomTargetScore[0];
+    console.log(gold);
+    currentSessionTalliedValue += gold;
     console.log("TalliedValue: " + currentSessionTalliedValue);
+    checkPlayerScore();
+
 });
 $("#blue").click(function () {
-    currentSessionTalliedValue += randomTargetScore[1];
+    currentSessionTalliedValue += blue;
     console.log("TalliedValue: " + currentSessionTalliedValue);
+    checkPlayerScore();
 });
 $("#emerald").click(function () {
-    currentSessionTalliedValue += randomTargetScore[2];
+    currentSessionTalliedValue += emerald;
     console.log("TalliedValue: " + currentSessionTalliedValue);
+    checkPlayerScore();
 });
 $("#sapphire").click(function () {
-    currentSessionTalliedValue += randomTargetScore[3];
+    currentSessionTalliedValue += sapphire;
     console.log("TalliedValue: " + currentSessionTalliedValue);
+    checkPlayerScore();
 });
 
 function resetGame() {
-
 }
 
-if (userValueTotal > currentGameTargetValue, (losses++)) function resetGame();
 
-else if (userValueTotal === currentGameTargetValue(wins++)) function resetGame();
+//var yourScore = document.getElementById(gold, blue, emerald,sapphire);
+//var targetScore = document.getElementById('targetScore');
 
 
 
-var yourScore = document.getElementById('yourScore');
-var yourScore = getElementById(gold, blue, emerald, sapphire.onclick(math.sum));
-yourScore.innerHTML = 0;
-var targetScore = document.getElementById('targetScore');
-targetScore.innerHTML = getRandomValue(10, 4);
+//gold.setAttribute("value", "5");
+//console.log(gold.value);
 
-function addToScore(val) {
-    var numberToAdd = parseInt(val);
-    var currentScore = parseInt(yourScore.innerHTML);
-    yourScore.innerHTML = numberToAdd + currentScore;
-}
 
-var gold = document.getElementById("gold");
-gold.setAttribute("value", "5");
-console.log(gold.value);
+//blue.setAttribute("value", "10");
+//console.log(blue.value);
 
-var blue = document.getElementById("blue");
-blue.setAttribute("value", "10");
-console.log(blue.value);
 
-var emerald = document.getElementById("emerald");
-emerald.setAttribute("value", "20");
-console.log(emerald.value);
+//emerald.setAttribute("value", "20");
+//console.log(emerald.value);
 
-var sapphire = document.getElementById("sapphire");
-sapphire.setAttribute("value", "25");
-console.log(sapphire.value);
 
-gold.addEventListener('click', function () {
-    addToScore(this.value);
-    checkPlayerScore();
-});
+//sapphire.setAttribute("value", "25");
+//console.log(sapphire.value);
 
-//parseInt(42.01) => 42
-//alert(parseInt('james')); // NaN (not a number)
-// Cafe Del Mar ChillWave 2 :)
-// .innerHTML returns a string, NaN
 
-blue.addEventListener('click', function () {
-    addToScore(this.value);
-    checkPlayerScore();
-});
 
-emerald.addEventListener('click', function () {
-    addToScore(this.value);
-    checkPlayerScore();
-});
+var sum = parseInt(gold.value) + parseInt(blue.value) + parseInt(emerald.value) + parseInt(sapphire.value);
 
-sapphire.addEventListener('click', function () {
-    addToScore(this.value);
-    checkPlayerScore();
-});
-//var sum = parseInt(red.value) + parseInt(blue.value) + parseInt(yelow.value) + parseInt(green.value);
-
-// console.log (sum);
+console.log(sum);
 function getRandomValue(a, b) {
     return Math.floor((Math.random() * a) + b);
 }
 
 function checkPlayerScore() {
-    //yourScore, targetScore (parseFloat() is for decimals)
-    var playerInt = parseInt(yourScore.innerHTML);
-    var targetInt = parseInt(targetScore.innerHTML);
-    if (playerInt === targetInt) {
-        alert('You win!');
-    } else if (playerInt > targetInt) {
-        alert('You lose!');
+    $("#TalliedValue").text(currentSessionTalliedValue);
+    if (currentSessionTalliedValue === currentGameTargetScore) {
+        alert('You win!'); wins++
+        $("#winsDisplay").append(wins)
+    } else if (currentSessionTalliedValue > currentGameTargetScore) {
+        alert('You lose!'); losses++
+        $("#LossesDisplay").append(losses)
+
     }
 }
 
